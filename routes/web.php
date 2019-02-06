@@ -25,46 +25,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
 
-    Route::resource('departments', 'DepartmentController');
-    Route::get('departments/{department}/municipalities', 'DepartmentController@municipalities');
-
-    Route::resource('municipalities', 'MunicipalityController');
-    // Route::resource('candidates', 'CandidateController');
-
-    Route::resource('mayors', 'MayorController');
-    Route::get('mayors/{department}/{muni_id}', 'MayorController@getMayors')
-        ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
-
     Route::resource('deputies', 'DeputyController');
     Route::get('departments/{department}/deputies', 'DeputyController@getDeputies')
         ->where('depto_id', '[0-9]+')->where('muni_id', '[0-9]+');
 
     Route::get('admin', 'DashboardController@index')->name('admin.dash');
-    Route::get('dashboard/departments/legals', 'DashboardController@departmentsLegals');
-    Route::get('dashboard/departments/primes', 'DashboardController@departmentsPrimes');
-    Route::get('dashboard/departments/mayors', 'DashboardController@departmentsMayors');
-    Route::get('dashboard/departments/deputies', 'DashboardController@departmentsDeputies');
-    Route::get('dashboard/departments/tours', 'DashboardController@departmentsTours');
-        
-    Route::get('dashboard/municipalities/{department}/legals', 'DashboardController@municipalitiesLegals');
-    Route::get('dashboard/municipalities/{department}/primes', 'DashboardController@municipalitiesPrimes');
-    Route::get('dashboard/municipalities/{department}/mayors', 'DashboardController@municipalitiesMayors');
-    Route::get('dashboard/municipalities/{department}/deputies', 'DashboardController@municipalitiesDeputies');
-    Route::get('dashboard/municipalities/{department}/tours', 'DashboardController@municipalitiesTours');
-
-    Route::get('dashboard/department/{department}/stadistics/legals', 'DashboardController@deptoStadisticsLegals');
-    Route::get('dashboard/stadistics/legals', 'DashboardController@paisStadisticsLegals');
-
-    Route::get('dashboard/department/{department}/stadistics/primes', 'DashboardController@deptoStadisticsPrimes');
-    Route::get('dashboard/stadistics/primes', 'DashboardController@paisStadisticsPrimes');
-
-    Route::get('dashboard/department/{department}/stadistics/mayors', 'DashboardController@deptoStadisticsMayors');
-    Route::get('dashboard/stadistics/mayors', 'DashboardController@paisStadisticsMayors');
-
-    Route::get('dashboard/department/{department}/stadistics/deputies', 'DashboardController@deptoStadisticsDeputies');
-    Route::get('dashboard/stadistics/deputies', 'DashboardController@paisStadisticsDeputies');
-
-    Route::get('dashboard/department/{department}/stadistics/tours', 'DashboardController@deptoStadisticsTours');
-    Route::get('dashboard/stadistics/tours', 'DashboardController@paisStadisticsTours');
-
 });
